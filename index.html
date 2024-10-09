@@ -283,38 +283,97 @@
             font-size: 1rem;
         }
     }
-</style>
-<div> 
-    <div style="width: 80%; margin: 20px auto;">
+</style>   
+</html>
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Bar Skills</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .skill {
+            margin-bottom: 20px;
+        }
+        .bar {
+            width: 100%;
+            background-color: #e0e0e0; /* رنگ پس‌زمینه خاکستری */
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative; /* برای قرار دادن نوار پیشرفت */
+        }
+        .progress {
+            height: 30px;
+            background-color: #3498db; /* رنگ نوار پیشرفت آبی */
+            border-radius: 5px;
+            width: 0; /* شروع از 0 */
+            transition: width 1s ease; /* انیمیشن برای تغییر عرض */
+        }
+        .percentage {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            color: white; /* رنگ متن سفید */
+            font-weight: bold;
+            line-height: 30px; /* هم‌راستایی متن با نوار */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
         <h2 style="text-align: center;">مهارت‌ها</h2>
-        <div style="margin-bottom: 20px;">
+        <div class="skill">
             <label for="skill1">HTML:</label>
-            <div style="width: 100%; background-color: #e0e0e0; border-radius: 5px;">
-                <div id="htmlProgress" style="width: 0%; height: 30px; background-color: #3498db; border-radius: 5px;"></div>
+            <div class="bar">
+                <div id="htmlProgress" class="progress"></div>
+                <div class="percentage" id="htmlPercentage">0%</div>
             </div>
         </div>
-        <div style="margin-bottom: 20px;">
+        <div class="skill">
             <label for="skill2">CSS:</label>
-            <div style="width: 100%; background-color: #e0e0e0; border-radius: 5px;">
-                <div id="cssProgress" style="width: 0%; height: 30px; background-color: #3498db; border-radius: 5px;"></div>
+            <div class="bar">
+                <div id="cssProgress" class="progress"></div>
+                <div class="percentage" id="cssPercentage">0%</div>
             </div>
         </div>
-        <div style="margin-bottom: 20px;">
+        <div class="skill">
             <label for="skill3">JavaScript:</label>
-            <div style="width: 100%; background-color: #e0e0e0; border-radius: 5px;">
-                <div id="jsProgress" style="width: 0%; height: 30px; background-color: #3498db; border-radius: 5px;"></div>
+            <div class="bar">
+                <div id="jsProgress" class="progress"></div>
+                <div class="percentage" id="jsPercentage">0%</div>
             </div>
         </div>
-        <button onclick="updateProgress()">به‌روزرسانی مهارت‌ها</button>
     </div>
 
     <script>
-        function updateProgress() {
-            // به‌روزرسانی درصد مهارت‌ها
-            document.getElementById("htmlProgress").style.width = "80%";
-            document.getElementById("cssProgress").style.width = "70%";
-            document.getElementById("jsProgress").style.width = "60%";
+        function animateProgress(element, percentageElement, targetWidth) {
+            let width = 0; // شروع از 0
+            const interval = setInterval(() => {
+                if (width >= targetWidth) {
+                    clearInterval(interval); // توقف انیمیشن
+                } else {
+                    width++; // افزایش عرض
+                    element.style.width = width + '%'; // به‌روزرسانی عرض نوار
+                    percentageElement.innerText = width + '%'; // به‌روزرسانی درصد متن
+                }
+            }, 20); // زمان بین هر افزایش عرض
         }
+
+        // انیمیشن نوارها هنگام بارگذاری صفحه
+        window.onload = function() {
+            animateProgress(document.getElementById("htmlProgress"), document.getElementById("htmlPercentage"), 80); // 80% برای HTML
+            animateProgress(document.getElementById("cssProgress"), document.getElementById("cssPercentage"), 70); // 70% برای CSS
+            animateProgress(document.getElementById("jsProgress"), document.getElementById("jsPercentage"), 60); // 60% برای JavaScript
+        };
     </script>
-</div>      
+</body>
 </html>
