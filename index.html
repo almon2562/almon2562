@@ -409,16 +409,20 @@
             gap: 20px; /* فاصله بین آیکون‌ها */
         }
         .social-icon {
-            width: 50px; /* عرض آیکون */
-            height: 50px; /* ارتفاع آیکون */
+            width: 60px; /* عرض قاب گرد */
+            height: 60px; /* ارتفاع قاب گرد */
+            border-radius: 50%; /* گرد کردن قاب */
+            overflow: hidden; /* مخفی کردن قسمت‌های اضافی */
             transition: transform 0.3s; /* انیمیشن هاور */
             display: flex;
             justify-content: center;
             align-items: center;
+            background-color: #e0e0e0; /* رنگ پس‌زمینه برای قاب */
         }
         .social-icon img {
             width: 100%; /* عرض آیکون به اندازه کامل */
             height: auto; /* حفظ نسبت ابعاد */
+            display: block; /* حذف فاصله زیر تصویر */
         }
         .social-icon:hover {
             transform: scale(1.1); /* بزرگ شدن آیکون در هاور */
